@@ -14,15 +14,15 @@ custom:
     useChildProcesses: true
   basePath: ""
   swaggerDestinations:
-    s3BucketName: "yearn.tools"
-    s3KeyName: "swagger/swagger.json"
+    s3BucketName: "aries-financial-swagger-ui"
+    s3KeyName: "swagger.json"
     acl: public-read
   documentation:
     api:
       info:
-        version: "1.02"
-        title: Yearn API
-        description: Yearn API
+        version: "1.00"
+        title: Aries Financial
+        description: Aires Financial API
       tags:
         - name: Vaults
           description: Vault endpoints
@@ -37,11 +37,12 @@ provider:
   name: aws
   runtime: nodejs12.x
   profile: ${file(./awsProfile.yml):aws_profile}
+  region: ap-southeast-1
 functions:
   # /vaults
   vaults:
     handler: services/vaults/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -65,7 +66,7 @@ functions:
 
   vaults-snapshots:
     handler: services/vaults/snapshots/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -81,7 +82,7 @@ functions:
 
   vaults-addresses:
     handler: services/vaults/addresses/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -97,7 +98,7 @@ functions:
 
   vaults-save:
     handler: services/vaults/save/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     events:
       - http:
           path: /vaults/save
@@ -106,7 +107,7 @@ functions:
 
   vaults-apy:
     handler: services/vaults/apy/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -122,7 +123,7 @@ functions:
 
   vaults-apy-save:
     handler: services/vaults/apy/save/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     events:
       - http:
           path: /vaults/apy/save
@@ -131,7 +132,7 @@ functions:
   # /user
   user-vaults:
     handler: services/user/vaults/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -176,7 +177,7 @@ functions:
 
   user-vaults-transactions:
     handler: services/user/vaults/transactions/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -199,7 +200,7 @@ functions:
 
   user-vaults-statistics:
     handler: services/user/vaults/statistics/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -222,7 +223,7 @@ functions:
 
   user-vaults-earnings:
     handler: services/user/vault/earnings/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -240,7 +241,7 @@ functions:
   # /loanscan
   loanscan-link:
     handler: services/loanscan/link/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -256,7 +257,7 @@ functions:
 
   loanscan-eth-stable:
     handler: services/loanscan/eth-stable/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -272,7 +273,7 @@ functions:
 
   loanscan-ycrv:
     handler: services/loanscan/ycrv/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -288,7 +289,7 @@ functions:
 
   loanscan-crvbtc:
     handler: services/loanscan/crvbtc/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -304,7 +305,7 @@ functions:
 
   loanscan-crvbusd:
     handler: services/loanscan/crvbusd/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -321,7 +322,7 @@ functions:
   # /yearn
   yearn-repos-save:
     handler: services/yearn/repos/save/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -335,7 +336,7 @@ functions:
 
   yearn-repos:
     handler: services/yearn/repos/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -349,7 +350,7 @@ functions:
 
   yearn-repos-statistics:
     handler: services/yearn/repos/statistics/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
@@ -363,7 +364,7 @@ functions:
 
   yearn-repos-contributors:
     handler: services/yearn/repos/contributors/handler.handler
-    role: arn:aws:iam::698083237070:role/service-role/fetchTokenIds-role-o9i24lq2
+    role: arn:aws:iam::973919765030:role/service-role
     timeout: 30
     events:
       - http:
